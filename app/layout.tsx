@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import type { Metadata } from "next";
 
 import { AuthProvider } from "./providers/SessionProvider";
+import { MuiProvider } from "./providers/MuiProvider";
 
 const workSans = localFont({
   src: [
@@ -68,7 +69,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={workSans.variable}>
-        <AuthProvider>{children}</AuthProvider>
+        <MuiProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </MuiProvider>
       </body>
     </html>
   );

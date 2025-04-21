@@ -2,25 +2,30 @@
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
+import { Button, Typography, Stack } from "@mui/material";
 
 export const AuthButtons = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="flex items-center gap-5 text-black">
+    <Stack direction="row" spacing={2} alignItems="center">
       {session && session?.user ? (
         <>
-          <Link href="/startup/create">
-            <button>Create</button>
+          <Link href="/startup/create" passHref>
+            <Button variant="contained">Create</Button>
           </Link>
-          <span onClick={() => signOut()}>Logout</span>
+          <Button variant="contained" onClick={() => signOut()}>
+            Logout
+          </Button>
           <Link href={`/user/${session?.user.name}`}>
-            <span>{session?.user?.name}</span>
+            <Typography variant="body1">{session?.user?.name}</Typography>
           </Link>
         </>
       ) : (
-        <button onClick={() => signIn("github")}>Login with GitHub</button>
+        <Button variant="contained" onClick={() => signIn("github")}>
+          Login with GitHub
+        </Button>
       )}
-    </div>
+    </Stack>
   );
 };
