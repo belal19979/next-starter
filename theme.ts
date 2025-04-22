@@ -6,12 +6,29 @@ export const theme = createTheme({
     primary: { main: "#EE2B69" },
     secondary: { main: "#FBE843" },
     background: { default: "#ffffff" },
+    text: { primary: "#FFFFFF" },
   },
   typography: {
     fontFamily: "var(--font-work-sans), Arial, sans-serif",
-    h1: { fontWeight: 800, fontSize: "3.375rem", lineHeight: 1.2 },
+    h1: {
+      fontSize: "36px",
+      lineHeight: "46px",
+      fontWeight: 800,
+      textTransform: "uppercase",
+      textAlign: "center",
+      "@media (min-width:600px)": {
+        fontSize: "54px",
+        lineHeight: "64px",
+      },
+    },
     h2: { fontWeight: 700 },
+    body1: {
+      fontWeight: 500,
+      fontSize: "20px",
+      textAlign: "center",
+      wordBreak: "break-word",
+      mxL: "auto",
+    },
   },
   shape: { borderRadius: 12 },
-  shadows: ["none", "2px 2px 0px rgba(0,0,0,.25)"],
 });
