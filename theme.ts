@@ -26,8 +26,6 @@ export const theme = createTheme({
       fontWeight: 500,
       fontSize: "20px",
       textAlign: "center",
-      wordBreak: "break-word",
-      mxL: "auto",
     },
   },
   shape: { borderRadius: 12 },
