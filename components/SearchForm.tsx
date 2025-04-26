@@ -1,6 +1,7 @@
 import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
-import Form from "next/form";
 import SearchIcon from "@mui/icons-material/Search";
+
+import Form from "next/form";
 import { SearchFormReset } from "./SearchFormReset";
 
 export const SearchForm = ({ query }: { query?: string }) => {

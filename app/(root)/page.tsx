@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
-import { HeaderContainer } from "../components/HeaderContainer";
-import { SearchForm } from "../components/SearchForm";
+import { HeaderContainer, SearchForm } from "@/components";
 
 export default async function Home({
   searchParams,
