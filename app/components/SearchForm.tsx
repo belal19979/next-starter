@@ -1,23 +1,28 @@
 "use client";
 
-import {
-  Box,
-  IconButton,
-  InputAdornment,
-  Stack,
-  TextField,
-} from "@mui/material";
+import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export const SearchForm = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
+  const router = useRouter();
+  const [inputValue, setInputValue] = useState(query);
+
+  useEffect(() => {
+    setInputValue(query);
+  }, [query]);
 
   const handleReset = () => {
-    console.log("reset");
+    const params = new URLSearchParams(searchParams);
+
+    params.delete("query");
+    const newUrl = params.toString() ? `?${params}` : ".";
+    router.replace(newUrl);
   };
 
   return (
@@ -28,7 +33,8 @@ export const SearchForm = () => {
     >
       <TextField
         name="query"
-        defaultValue={query}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         placeholder="Search Statups"
         variant="outlined"
         size="small"
@@ -36,6 +42,7 @@ export const SearchForm = () => {
           flex: 1,
           minWidth: "250px",
           backgroundColor: "white",
+          color: "black",
           borderRadius: 2,
           "& .MuiOutlinedInput-root": {
             borderRadius: 2,
@@ -48,7 +55,7 @@ export const SearchForm = () => {
           input: {
             endAdornment: (
               <InputAdornment position="end">
-                {query && (
+                {inputValue && (
                   <IconButton onClick={handleReset} edge="end" size="small">
                     <ClearIcon />
                   </IconButton>
@@ -66,7 +73,6 @@ export const SearchForm = () => {
           },
         }}
       />
-      <Stack direction="row" spacing={1}></Stack>
     </Box>
   );
 };

@@ -18,8 +18,7 @@ export default function Home() {
       <Typography variant="body1" my={3}>
         Submit Ideas, Vote on Pitches, and Get Noticed in Virtual Competitions.
       </Typography>
-
-      <SearchForm></SearchForm>
+      <SearchForm />
     </HeaderContainer>
   );
 }
