@@ -1,5 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { HeaderContainer, SearchForm, StartupCard } from "@/components";
+import { posts } from "@/lib/mockData";
+import { StartupCardType } from "@/lib/types/startupCard.types";
 
 export default async function Home({
   searchParams,
@@ -7,26 +9,7 @@ export default async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-  const posts = [
-    {
-      _createdAt: "yesterday",
-      views: 60,
-      _id: 1,
-      description: "this is description",
-      image: "",
-      category: "Robots",
-      title: "Robots title",
-    },
-  ];
-  type StartupCardType = {
-    _createdAt: string;
-    views: number;
-    _id: number;
-    description: string;
-    image: string;
-    category: string;
-    title: string;
-  };
+
   return (
     <>
       <HeaderContainer>
@@ -34,6 +17,7 @@ export default async function Home({
           variant="h1"
           sx={{
             backgroundColor: "common.black",
+            color: "white",
             px: 6,
             py: 3,
           }}
@@ -46,20 +30,18 @@ export default async function Home({
         </Typography>
         <SearchForm query={query} />
       </HeaderContainer>
-      <section style={{ color: "black" }}>
-        <p style={{ color: "black" }}>
+      <Box component="section" marginTop={5}>
+        <Typography variant="h5">
           {query ? `search results for "${query}"` : "All startups"}
-        </p>
-        <ul>
+        </Typography>
+        <Box component="ul" sx={{ listStyle: "none" }}>
           {posts?.length > 0 ? (
-            posts.map((post: StartupCardType, index: number) => (
-              <StartupCard key={index} />
-            ))
+            posts.map((post: StartupCardType) => <StartupCard key={post._id} />)
           ) : (
-            <p>No startups found</p>
+            <Typography variant="body2">No startups found</Typography>
           )}
-        </ul>
-      </section>
+        </Box>
+      </Box>
     </>
   );
 }
