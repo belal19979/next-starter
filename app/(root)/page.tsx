@@ -36,7 +36,9 @@ export default async function Home({
         </Typography>
         <Box component="ul" sx={{ listStyle: "none" }}>
           {posts?.length > 0 ? (
-            posts.map((post: StartupCardType) => <StartupCard key={post._id} />)
+            posts.map((post: StartupCardType) => (
+              <StartupCard key={post._id} post={post} />
+            ))
           ) : (
             <Typography variant="body2">No startups found</Typography>
           )}

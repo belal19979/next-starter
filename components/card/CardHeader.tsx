@@ -1,7 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { StartupCardType } from "@/lib/types/startupCard.types";
+import { formatDate } from "@/lib/utils";
 
-export const CardHeader = () => {
+export const CardHeader = ({ post }: { post: StartupCardType }) => {
   return (
     <Box
       sx={{
@@ -21,11 +23,11 @@ export const CardHeader = () => {
           fontWeight: "bold",
         }}
       >
-        20 MAY , 2023
+        {formatDate(post._createdAt)}
       </Typography>
       <Stack direction="row" gap={2} alignItems="center">
         <VisibilityIcon color="primary" />
-        <Typography variant="body1">232</Typography>
+        <Typography variant="body1">{post.views}</Typography>
       </Stack>
     </Box>
   );

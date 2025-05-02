@@ -4,11 +4,13 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import avatarwebp from "@/public/avatarwebp.webp";
+// import avatarwebp from "@/public/avatarwebp.webp";
+import { StartupCardType } from "@/lib/types/startupCard.types";
 
 import Image from "next/image";
+import Link from "next/link";
 
-export const CardContent = () => {
+export const CardContent = ({ post }: { post: StartupCardType }) => {
   return (
     <>
       <MuiCardContent
@@ -21,13 +23,17 @@ export const CardContent = () => {
         }}
       >
         <Stack direction="column" alignItems="center">
-          <Typography variant="body1">Steven smith</Typography>
-          <Typography>Eco track</Typography>
+          <Link href={`/user/${post.author._id}`}>
+            <Typography variant="body1">{post.author.name}</Typography>
+          </Link>
+          <Link href={`/startup/${post._id}`}>
+            <Typography>{post.title}</Typography>
+          </Link>
         </Stack>
         <Box sx={{ position: "relative", width: "60px", height: "60px" }}>
           <Image
-            src={avatarwebp}
-            alt="avatar"
+            src="https://placehold.co/600*400"
+            alt="avatar placeholder"
             fill
             style={{ objectFit: "cover" }}
           />
